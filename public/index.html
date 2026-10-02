@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>d.jr Football Store</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="nav">
+    <a class="brand" href="/"><span>d.jr</span> FOOTBALL</a>
+    <div class="search"><input id="search" placeholder="Search footballs, jerseys, boots, accessories..."><button onclick="searchProducts()">⌕</button></div>
+    <a href="#categories" class="navlink">Categories</a>
+    <button class="cart-btn" onclick="openCart()">Cart <b id="cartCount">0</b></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">THE FOOTBALL STORE</p>
+    <h1>PLAY HARD.<br><span>LOOK SHARP.</span></h1>
+    <p>Football gear for training, match day and everything between.</p>
+    <button class="primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop now →</button>
+  </div>
+  <div class="hero-art"><div class="ball">⚽</div></div>
+</section>
+
+<section id="categories" class="categories">
+  <button class="cat active" onclick="setCategory('All',this)">All</button>
+  <button class="cat" onclick="setCategory('Jerseys',this)">Jerseys</button>
+  <button class="cat" onclick="setCategory('Football',this)">Footballs</button>
+  <button class="cat" onclick="setCategory('Apparel',this)">Apparel</button>
+  <button class="cat" onclick="setCategory('Accessories',this)">Accessories</button>
+</section>
+
+<main id="products" class="container">
+  <div class="section-head"><div><p class="eyebrow">SHOP</p><h2>Popular football gear</h2></div><span id="resultCount"></span></div>
+  <div id="productGrid" class="grid"></div>
+</main>
+
+<section class="trust container">
+  <div><b>✓</b><span><strong>Online payment</strong><small>Secure UPI checkout</small></span></div>
+  <div><b>✓</b><span><strong>Easy ordering</strong><small>Mobile-first shopping</small></span></div>
+  <div><b>✓</b><span><strong>Order tracking</strong><small>Track your order number</small></span></div>
+</section>
+
+<footer><div class="brand">d.jr FOOTBALL</div><p>Football is more than a game.</p><a href="/admin.html">Admin</a></footer>
+
+<div id="productModal" class="overlay hidden"><div class="modal product-modal"><button class="close" onclick="closeModal('productModal')">×</button><div id="productDetail"></div></div></div>
+<div id="cartModal" class="overlay hidden"><div class="modal"><button class="close" onclick="closeModal('cartModal')">×</button><h2>Your cart</h2><div id="cartItems"></div><div class="cart-total"><span>Total</span><b id="cartTotal">₹0</b></div><button class="primary full" onclick="goCheckout()">Proceed to payment →</button></div></div>
+
+<div id="checkoutModal" class="overlay hidden"><div class="modal checkout"><button class="close" onclick="closeModal('checkoutModal')">×</button><div class="checkout-steps"><span class="active">1 Details</span><span>2 Payment</span><span>3 Done</span></div><h2>Delivery details</h2>
+<form id="checkoutForm">
+<input name="name" required placeholder="Full name">
+<input name="phone" required placeholder="Mobile number">
+<input name="email" type="email" placeholder="Email (optional)">
+<textarea name="address" required placeholder="Full delivery address"></textarea>
+<div class="two"><input name="city" required placeholder="City"><input name="pincode" required placeholder="PIN code"></div>
+<button class="primary full" type="submit">Continue to payment →</button>
+</form></div></div>
+
+<div id="paymentModal" class="overlay hidden"><div class="modal payment"><button class="close" onclick="closeModal('paymentModal')">×</button><div class="checkout-steps"><span>1 Details</span><span class="active">2 Payment</span><span>3 Done</span></div><h2>Pay by UPI</h2><p>Scan the QR below with your UPI app, complete the payment, then enter your UTR / transaction reference.</p><img class="qr" src="/payment-qr.png" alt="UPI payment QR"><div class="pay-total">Pay <b id="payAmount">₹0</b></div><form id="paymentForm"><input id="utr" required placeholder="Enter UTR / transaction reference"><button class="primary full" type="submit">I've paid — place order</button></form><small class="muted">Payment is verified by the store before dispatch.</small></div></div>
+
+<div id="successModal" class="overlay hidden"><div class="modal success"><div class="success-icon">✓</div><h2>Order placed</h2><p>Your order number is</p><strong id="orderNumber"></strong><p class="muted">Keep this number to track your order.</p><a id="trackLink" class="primary linkbtn">Track order</a><button class="secondary full" onclick="location.reload()">Continue shopping</button></div></div>
+
+<div id="toast"></div>
+<script src="/app.js"></script>
+</body>
+</html>
